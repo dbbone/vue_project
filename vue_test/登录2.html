@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+    <!-- 引入样式 -->
+<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+<!-- 引入组件库 -->
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+</head>
+<body>
+      <div id="root1">
+
+
+<el-container>
+
+
+   <el-header style="background-color:#008784;height: 100px;">
+      <img src="./src/assets/校徽2.jpg" alt="" style="height: 100px;margin-left: -20px;">
+   </el-header>
+
+   
+   <el-main style="height: 550px;background-image:url(./src/assets/背景图.jpg)" >
+      <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
+
+
+        <!--上方切换登陆方式-->
+        <el-menu default-active="2" class="el-menu-demo" mode="horizontal" @select="handleSelect">
+          <el-menu-item index="1" @click="denglu1" >账号密码登录</el-menu-item>
+          <el-menu-item index="2" @click="denglu2">手机登录</el-menu-item>
+        </el-menu>
+       
+        <div style="margin-top: 10px;">
+        <el-form-item label="手机号" prop="pass" class="fitem" style="width: 350px;">
+          <el-input type="password" v-model="zhanghao" autocomplete="off">
+              
+                <el-button     slot="suffix" type="text">发送验证码</el-button>
+              
+          </el-input>
+          
+        </el-form-item>
+
+
+
+        <el-form-item label="验证码"  prop="checkPass" class="fitem" style="width: 250px;">
+          <el-input type="password" v-model="mima" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" @click="jianyan"  >登录</el-button>
+          
+        </el-form-item>
+      </div>
+  </el-form>
+</el-main>
+
+
+    <el-footer style="background-color:#008784;height: 100px;">
+     <div style="text-align: center;">
+       <el-link type="primary" class="linkclass">学校首页</el-link>
+       <el-link type="primary"class="linkclass">浙科邮箱</el-link>
+       <el-link type="primary" class="linkclass">服务大厅</el-link>
+     </div>
+    </el-footer>
+
+
+</el-container>
+  </div>
+       <script type="text/javascript">
+           Vue.config.productionTip=false
+            new Vue({
+               el:'#root1',
+               data() {
+                   return {
+                       name:'he',
+                       zhanghao:'',
+                       mima:'',
+                       ruleForm:{},
+                       rules:{},
+                   }
+               },
+               methods: {
+                   ty(){
+                    console.log(1)
+                   },
+                   jianyan(){
+                     sessionStorage.setItem("token",true)
+                     window.location.href="http://localhost:8080/#"  
+                   },
+                   denglu1(){   //账号密码登录
+                    window.location.href="./登录.html"
+                   },
+                   denglu2(){   //手机号登录
+                    window.location.href="./登录2.html"
+                   }
+               },
+              
+           })
+       </script>
+       <style>
+        *{
+          margin: 0;
+          padding: 0;
+        }
+       .demo-ruleForm{
+         /* padding-top: 50px;       */
+        height: 300px;
+        width: 400px;
+        margin-top: 100px;
+        margin-left: 900px;
+        border: solid ;
+        border-radius: 15px;
+        background-color: white;
+     }
+      .fitem{
+        /* padding-top: 10px; */
+        width: 300px;
+      }
+      .el-menu-demo{
+        margin-left: 80px;
+        width: 300px;
+        
+      }
+      .linkclass{
+        margin-left: 50px;       /* margin-left: 50px; 用于改变下方网址的间距    */
+      }
+      </style>
+</body>
+</html>
